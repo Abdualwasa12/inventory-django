@@ -2,6 +2,7 @@
 inventory app with django
 
 install
+
 pip install requirements.txt
 
 python manage.py makemigrations
