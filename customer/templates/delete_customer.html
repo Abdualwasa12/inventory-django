@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+ <div  class="wrapper text-center ">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div   class="content-wrapper ">
+      <!-- Content Header (Page header) -->
+  <div  class="card card-danger">
+      <div class="card-header">
+        <h3 class="card-title">حذف عميل </h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form  method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="row">
+          
+       <p class="p-3">هل تريد حذف العميل</p>
+   
+        </div>
+        <!-- /.card-body -->
+  
+        <div class="card-footer">
+          <button type="submit" class="btn btn-danger">حذف</button>
+  
+        <a href="{% url 'customer:customer_list' %}" type="button" class="btn btn-success">إلغاء</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+{% endblock content %}

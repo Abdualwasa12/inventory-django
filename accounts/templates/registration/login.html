@@ -1,0 +1,36 @@
+{% extends "sign_base.html" %}
+{%load crispy_forms_tags %}
+
+{% block sign %}
+<div class="container">
+    <section class="loginPage py-5">
+        <div class="container">
+          <div class="row login_box shadow-lg">
+            <div class="col-12 px-0">
+              <form class="login-form" action="" method="POST" enctype="multipart/form-data">
+                <div class="login_content">
+                  <div
+                    class="login_footer d-flex align-items-center justify-content-center"
+                  >         
+                      جامعة غريان - كلية تقنية المعلومات
+
+                  </div>
+                  {% csrf_token %}
+                
+                  {{ form|crispy }}
+  
+                  <div class="btn_holder">
+                    <button class="btn login-btn">تسجيل الدخول</button>
+                  </div>
+                </div>
+              </form>
+              <div class="flex flex-col mt-6">
+                <span class="max-w-xl text-gray-800 text-sm">Don't have an account yet, <a class="text-green-600 font-medium underline" href="{% url 'accounts:signup' %}">Register now</a> </span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+</div>
+{% endblock sign %}

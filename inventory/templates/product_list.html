@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  
+    <!-- Start Section -->
+    <section class="main-section users">
+      <div class="container">
+        <h4 class="main-heading">المخزن</h4>
+        <div
+          class="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-2"
+        >
+          <div class="d-flex align-items-center gap-2">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="أبحث عن بضاعة"
+              name=""
+              id=""
+            />
+          </div>
+          <a href="{% url 'inventory:add_product' %}">
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-add"
+            class="btn-main-sm"
+          >
+            أضف بضاعة
+            <i class="icon fa-solid fa-plus"></i>
+          </button>
+          </a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table main-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>اسم المنتج</th>
+                <th>رقم المنتج</th>
+                <th>الكمية</th>
+                <th class="text-center">التحكم</th>
+              </tr>
+            </thead>
+            {% for product in products %}
+                
+            <tbody>
+              <tr>
+                <td>{{product.id}}</td>
+                <td>{{product.proudct_name}}</td>
+                <td>{{product.proudct_num}}</td>
+                <td>{{product.proudct_quantity}}</td>
+                <td>
+                  <div
+                    class="d-flex align-items-center justify-content-center gap-1"
+                  >
+                  <a href="{% url 'inventory:edit_product' product.id %}"><div
+                      class="btn btn-sm btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modal-edit"
+                    >
+                      تعديل
+                    </div>
+                    </a>
+                    <a href="{% url 'inventory:delete_product' product.id %}"><div
+                      class="btn btn-sm btn-danger"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modal-delete"
+                    >
+                      حذف
+                    </div>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            {% endfor %}
+
+          </table>
+        </div>
+      </div>
+    </section>
+
+   
+    <!-- Modal-delete -->
+    <div
+      class="modal fade"
+      id="modal-delete"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">حذف البضاعة</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h6 class="text-center">هل انت متأكد من اجراء عملية الحذف!</h6>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              style="font-size: 12px"
+              data-bs-dismiss="modal"
+            >
+              الغاء
+            </button>
+            <button type="button" class="btn-main-sm">نعم</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Section -->
+
+    {% endblock content %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  
+    <!-- Start Section -->
+    <section class="main-section users">
+        <div class="container">
+          <h4 class="main-heading">العملاء</h4>
+          <div
+            class="d-flex align-items-center flex-wrap justify-content-end mb-2"
+          >
+            <a href="{% url 'customer:add_customer' %}"><button
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#modal-add"
+              class="btn-main-sm"
+            >
+              أضف عميل 
+              <i class="icon fa-solid fa-plus"></i>
+            </button>
+            </a>
+          </div>
+          <div class="table-responsive">
+            <table class="table main-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>اسم الادارة</th>
+                  <th>رقم الادارة</th>
+                  <th class="text-center">التحكم</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for customer in customers %}
+                  
+                <tr>
+                  <td>{{customer.id}}</td>
+                  <td>{{customer.name}}</td>
+                  <td>{{customer.num}}</td>
+                  <td>
+                    <div
+                      class="d-flex align-items-center justify-content-center gap-1"
+                    >
+                      <a href="{% url 'customer:edit_customer' customer.id %}"><div
+                        class="btn btn-sm btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-edit"
+                      >
+                        تعديل
+                      </div>
+                      </a>
+                      <a href="{% url 'customer:delete_customer' customer.id %}"><div
+                        class="btn btn-sm btn-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-delete"
+                      >
+                        حذف
+                      </div>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- End Section -->
+
+    {% endblock content %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="main-section home h-100vh">
+    <div class="container">
+      <h4 class="main-heading">الرئيسية</h4>
+      <div class="row row-gap-24 mb-4 boxes-info mt-5">
+        <div class="col-sm-6 col-md-6">
+        <a href="{% url 'inventory:product_list' %}">
+            <div class="box-info blue">
+              <i class="fas fa-coins bg-icon"></i>
+              <!-- <div class="num">851.00</div> -->
+              <div class="text">المخزن</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-6 col-md-6">
+        <a href="{% url 'transactions:export_list' %}">
+            <div class="box-info green">
+              <i class="fa-solid fa-box-open bg-icon"></i>
+              <!-- <div class="num">0.00</div> -->
+              <div class="text">الصادر </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Section -->
+{% endblock content %}

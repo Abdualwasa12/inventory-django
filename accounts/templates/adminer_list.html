@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+{% load check_permssion_group %}
+
+{% block content %}
+  
+    <!-- Start Section -->
+    <section class="main-section users">
+        <div class="container">
+          <h4 class="main-heading mt-5">ادارة المسؤولين</h4>
+          <form class="bg-white p-3 rounded-2 shadow">
+            <div
+              class="d-flex align-items-center flex-wrap justify-content-end mb-2"
+            >
+            <div
+            type="button"
+            class="btn btn-main-sm btn-success"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-permision"
+          >
+           صلاحياتي
+            </div>
+          </div>
+            <div class="table-responsive">
+              <table class="table main-table">
+                    
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>اسم المستخدم</th>
+                    <th>الرقم السري</th>
+                    <th>رقم الهاتف</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                {% for admin in adminers %}
+
+                  <tr>
+                    <td>{{admin.id}}</td>
+                    <td>{{admin.name}}</td>
+                    <td>1234567</td>
+                    <td>{{admin.phone}}</td>
+                    <td>
+                     
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </section>
+      <!-- Modal-permision -->
+      <div
+        class="modal fade"
+        id="modal-permision"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel"> الصلاحيات المتاحة</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="row row-gap-24">
+                {% for group in request.user.groups.all %}
+                <div class="col-sm-6 col-md-4">
+                  <div class="form-check">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{group.name}} 
+                    </label>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="modal-footer">
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {% endblock content %}

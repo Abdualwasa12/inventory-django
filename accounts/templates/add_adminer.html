@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{%load crispy_forms_tags %}
+
+{% load static %}
+{% block content %}
+<div class="container">
+ <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ form|crispy }}
+   
+    <div class="field">
+        <div class="control">
+            <button class="btn btn-success">أضف</button>
+    
+            <a href="{% url 'accounts:adminer_list' %}" class="btn btn-outline-secondary" role="button">إلغاء</a>
+        </div>
+    </div>
+</form>
+</div>
+{% endblock content %}
